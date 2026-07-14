@@ -1,0 +1,632 @@
+/* ==UserStyle==
+@name Rose Pine Gmail
+@namespace local/rosepine-gmail
+@version 1.1.0
+@description Rose Pine (main) theme for Gmail. Best on top of Gmail's built-in Dark theme.
+@author manish-ach with Claude
+@license GNU-V3.0
+
+@preprocessor stylus
+
+@var select mainColor "Accent color" [
+	"Rose",
+	"Love",
+	"Gold",
+	"Pine",
+	"Foam",
+	"Iris",
+]
+@var checkbox dark-email-body "Dark backdrop behind email bodies" 1
+@var text scrollbar_width "Scrollbar width" 8px
+
+==/UserStyle== */
+
+@-moz-document domain("mail.google.com") {
+
+	/* ---- Rose Pine main palette ---- */
+	:root
+	{
+		if mainColor == "Rose" {
+			--rp-accent: #ebbcba;
+			--rp-accent-rgb: 235, 188, 186;
+		}
+		else if mainColor == "Love" {
+			--rp-accent: #eb6f92;
+			--rp-accent-rgb: 235, 111, 146;
+		}
+		else if mainColor == "Gold" {
+			--rp-accent: #f6c177;
+			--rp-accent-rgb: 246, 193, 119;
+		}
+		else if mainColor == "Pine" {
+			--rp-accent: #31748f;
+			--rp-accent-rgb: 49, 116, 143;
+		}
+		else if mainColor == "Foam" {
+			--rp-accent: #9ccfd8;
+			--rp-accent-rgb: 156, 207, 216;
+		}
+		else if mainColor == "Iris" {
+			--rp-accent: #c4a7e7;
+			--rp-accent-rgb: 196, 167, 231;
+		}
+		--rp-base: #191724;
+		--rp-surface: #1f1d2e;
+		--rp-overlay: #26233a;
+		--rp-hl-low: #21202e;
+		--rp-hl-med: #403d52;
+		--rp-hl-high: #524f67;
+		--rp-muted: #6e6a86;
+		--rp-subtle: #908caa;
+		--rp-text: #e0def4;
+		--rp-love: #eb6f92;
+		--rp-gold: #f6c177;
+		--rp-foam: #9ccfd8;
+	}
+
+	/* ---- Material 3 design tokens: retheme Gmail natively ---- */
+	:root, body, .bkL, .qp
+	{
+		--gm3-sys-color-background: var(--rp-base) !important;
+		--gm3-sys-color-background-rgb: 25, 23, 36 !important;
+		--gm3-sys-color-on-background: var(--rp-text) !important;
+		--gm3-sys-color-surface: var(--rp-base) !important;
+		--gm3-sys-color-surface-rgb: 25, 23, 36 !important;
+		--gm3-sys-color-on-surface: var(--rp-text) !important;
+		--gm3-sys-color-on-surface-rgb: 224, 222, 244 !important;
+		--gm3-sys-color-surface-variant: var(--rp-overlay) !important;
+		--gm3-sys-color-on-surface-variant: var(--rp-subtle) !important;
+		--gm3-sys-color-on-surface-variant-rgb: 144, 140, 170 !important;
+		--gm3-sys-color-surface-dim: var(--rp-base) !important;
+		--gm3-sys-color-surface-bright: var(--rp-overlay) !important;
+		--gm3-sys-color-surface-container-lowest: var(--rp-base) !important;
+		--gm3-sys-color-surface-container-low: var(--rp-surface) !important;
+		--gm3-sys-color-surface-container: var(--rp-surface) !important;
+		--gm3-sys-color-surface-container-high: var(--rp-overlay) !important;
+		--gm3-sys-color-surface-container-highest: var(--rp-overlay) !important;
+		--gm3-sys-color-primary: var(--rp-accent) !important;
+		--gm3-sys-color-primary-rgb: var(--rp-accent-rgb) !important;
+		--gm3-sys-color-on-primary: var(--rp-base) !important;
+		--gm3-sys-color-primary-container: var(--rp-overlay) !important;
+		--gm3-sys-color-on-primary-container: var(--rp-accent) !important;
+		--gm3-sys-color-secondary: var(--rp-subtle) !important;
+		--gm3-sys-color-on-secondary: var(--rp-base) !important;
+		--gm3-sys-color-secondary-container: var(--rp-overlay) !important;
+		--gm3-sys-color-on-secondary-container: var(--rp-text) !important;
+		--gm3-sys-color-tertiary: var(--rp-foam) !important;
+		--gm3-sys-color-on-tertiary: var(--rp-base) !important;
+		--gm3-sys-color-tertiary-container: var(--rp-overlay) !important;
+		--gm3-sys-color-on-tertiary-container: var(--rp-foam) !important;
+		--gm3-sys-color-error: var(--rp-love) !important;
+		--gm3-sys-color-error-rgb: 235, 111, 146 !important;
+		--gm3-sys-color-on-error: var(--rp-base) !important;
+		--gm3-sys-color-error-container: var(--rp-overlay) !important;
+		--gm3-sys-color-error-container-rgb: 38, 35, 58 !important;
+		--gm3-sys-color-on-error-container: var(--rp-love) !important;
+		--gm3-sys-color-outline: var(--rp-hl-high) !important;
+		--gm3-sys-color-outline-variant: var(--rp-hl-med) !important;
+		--gm3-sys-color-inverse-surface: var(--rp-text) !important;
+		--gm3-sys-color-inverse-surface-rgb: 224, 222, 244 !important;
+		--gm3-sys-color-inverse-on-surface: var(--rp-base) !important;
+		--gm3-sys-color-inverse-on-surface-rgb: 25, 23, 36 !important;
+		--gm3-sys-color-inverse-primary: var(--rp-accent) !important;
+		--gm3-sys-color-surface-tint: var(--rp-accent) !important;
+		--gm3-sys-color-shadow: #000000 !important;
+		--gm3-sys-color-scrim: #000000 !important;
+	}
+
+	/* ---- Global ---- */
+	html, body,
+	.wl, .bkK, .aeJ, .aUx, .nH.bkK
+	{
+		background-color: var(--rp-base) !important;
+	}
+	/* gmail's universal container class: several bare .nH divs are painted
+	   white (.bkK > .nH etc). let the base show through everywhere; painted
+	   surfaces below win via higher specificity */
+	.nH
+	{
+		background-color: transparent !important;
+	}
+	/* conversation card wrapper */
+	.nH.a98, .a98.iY
+	{
+		background-color: var(--rp-surface) !important;
+	}
+
+	::selection
+	{
+		background: var(--rp-hl-high) !important;
+		color: var(--rp-text) !important;
+	}
+
+	* {
+		scrollbar-color: var(--rp-hl-high) transparent;
+		scrollbar-width: thin;
+	}
+	::-webkit-scrollbar
+	{
+		width: scrollbar_width !important;
+		height: scrollbar_width !important;
+	}
+	::-webkit-scrollbar-track
+	{
+		background: transparent !important;
+	}
+	::-webkit-scrollbar-thumb
+	{
+		background: var(--rp-hl-high) !important;
+		border-radius: 8px !important;
+	}
+
+	html
+	{
+		color-scheme: dark !important;
+	}
+
+	/* ---- Top bar (logo, search, account) ---- */
+	div[role="banner"],
+	div[role="banner"] > div,
+	.w-asV, .aiw, #gb
+	{
+		background-color: var(--rp-base) !important;
+	}
+	/* search box */
+	form[role="search"]
+	{
+		background-color: var(--rp-overlay) !important;
+		box-shadow: none !important;
+	}
+	form[role="search"] input
+	{
+		color: var(--rp-text) !important;
+	}
+	form[role="search"] input::placeholder
+	{
+		color: var(--rp-muted) !important;
+	}
+	form[role="search"] button svg,
+	div[role="banner"] svg
+	{
+		color: var(--rp-subtle) !important;
+		fill: var(--rp-subtle) !important;
+	}
+	/* icon glyph font used across gmail chrome */
+	.google-material-icons, .material-icons-extended
+	{
+		color: var(--rp-subtle) !important;
+	}
+	/* gmail logo lockup: flip dark wordmark light, keep the M's hues */
+	img[alt="Gmail"], img[src*="lockup"],
+	div[role="banner"] a[href*="mail.google"] img
+	{
+		filter: invert(0.85) hue-rotate(180deg) !important;
+	}
+	/* search focused / suggestions open */
+	form[role="search"] [aria-expanded="true"],
+	form[role="search"]:focus-within
+	{
+		background-color: var(--rp-overlay) !important;
+	}
+
+	/* ---- Left navigation ---- */
+	div[role="navigation"],
+	.aeN, .wT, .aic, .akr, .z0
+	{
+		background-color: var(--rp-base) !important;
+		color: var(--rp-subtle) !important;
+	}
+	/* flatten wrapper backgrounds (white column bottom, dark section boxes) */
+	div[role="navigation"] > div,
+	div[role="navigation"] > div > div
+	{
+		background-color: transparent !important;
+	}
+	/* nav text, whatever element it lives in (spare the compose button).
+	   NOTE: gmail has two role=navigation regions; .aeN is the folder list */
+	div[role="navigation"] *:not(.T-I):not(.T-I *),
+	.aeN *:not(.T-I):not(.T-I *)
+	{
+		color: var(--rp-subtle) !important;
+	}
+	/* folder links/buttons are .J-Ke (a OR span) with hardcoded #202124,
+	   text lives in .CJ/.CK/.n0; .aWk is the "Labels" heading */
+	.J-Ke, .J-Ke span, .J-Ke div,
+	.CJ, .CK, .CL, .n0, .n4, h2.aWk
+	{
+		color: var(--rp-subtle) !important;
+	}
+	.J-Ke:hover, .J-Ke:hover span, .J-Ke:hover div
+	{
+		color: var(--rp-text) !important;
+	}
+	/* selected item back to accent (several possible markers) */
+	div[role="navigation"] .nZ, div[role="navigation"] .nZ *,
+	.aeN .nZ, .aeN .nZ *, a.J-Ke.nZ, a.J-Ke.nZ *,
+	.aeN [aria-current], .aeN [aria-current] *,
+	div[role="navigation"] [aria-current], div[role="navigation"] [aria-current] *,
+	div[role="navigation"] [aria-selected="true"], div[role="navigation"] [aria-selected="true"] *
+	{
+		color: var(--rp-accent) !important;
+	}
+	/* compose button */
+	.T-I.T-I-KE.L3
+	{
+		background: var(--rp-overlay) !important;
+		color: var(--rp-text) !important;
+		box-shadow: none !important;
+	}
+	.T-I.T-I-KE.L3:hover
+	{
+		background: var(--rp-hl-med) !important;
+		box-shadow: none !important;
+	}
+	/* strip native backgrounds off nav rows/sections */
+	.aim, .TO, .TK, .byl, .n3
+	{
+		background-color: transparent !important;
+	}
+	/* label rows */
+	.TO .nU,
+	.aio
+	{
+		color: var(--rp-subtle) !important;
+	}
+	.aim:hover .TO
+	{
+		background-color: var(--rp-hl-low) !important;
+	}
+	/* selected label (e.g. Inbox) */
+	.TO.nZ
+	{
+		background-color: var(--rp-overlay) !important;
+	}
+	.TO.nZ .nU,
+	.TO.nZ .aio,
+	.TO.nZ .bsU
+	{
+		color: var(--rp-accent) !important;
+	}
+	/* unread counts */
+	.bsU
+	{
+		color: var(--rp-subtle) !important;
+	}
+	div[role="navigation"] svg
+	{
+		color: var(--rp-subtle) !important;
+	}
+	.TO.nZ svg
+	{
+		color: var(--rp-accent) !important;
+	}
+
+	/* ---- Category tabs (Primary / Promotions / Social) ---- */
+	.aKk
+	{
+		background-color: var(--rp-surface) !important;
+	}
+	td[role="tab"] .aKz,
+	.aAy
+	{
+		color: var(--rp-subtle) !important;
+	}
+	.aAy[aria-selected="true"],
+	.aAy[aria-selected="true"] .aKz
+	{
+		color: var(--rp-accent) !important;
+	}
+	.aAy[aria-selected="true"]
+	{
+		border-bottom-color: var(--rp-accent) !important;
+	}
+	.aAy svg
+	{
+		color: inherit !important;
+	}
+	/* "N new" pills on the tabs (colors are inline styles) */
+	.aDG .qh, .aKu,
+	td[role="tab"] span[style*="background"]
+	{
+		background-color: var(--rp-overlay) !important;
+		color: var(--rp-accent) !important;
+	}
+	/* tab labels */
+	td[role="tab"] .aKz, .aAy .bqC
+	{
+		color: var(--rp-subtle) !important;
+	}
+	td[role="tab"][aria-selected="true"] .aKz
+	{
+		color: var(--rp-accent) !important;
+	}
+
+	/* advanced-search filter chips (From / Any time / To ...) */
+	.bwp
+	{
+		background-color: var(--rp-overlay) !important;
+	}
+	.bwp, .bwp span
+	{
+		color: var(--rp-subtle) !important;
+	}
+
+	/* ---- Toolbar above the list ---- */
+	.G-atb, .aeH
+	{
+		background-color: var(--rp-surface) !important;
+		border-color: var(--rp-hl-low) !important;
+	}
+	/* pagination "1-50 of x" */
+	.Dj, .Di, .ar5
+	{
+		color: var(--rp-muted) !important;
+	}
+	.G-atb svg
+	{
+		color: var(--rp-subtle) !important;
+	}
+	div[gh="tm"] span,
+	div[gh="tm"] div[role="button"],
+	.asa, .aDl
+	{
+		color: var(--rp-subtle) !important;
+	}
+	div[gh="tm"] img, .G-atb img
+	{
+		filter: invert(0.62) hue-rotate(180deg);
+	}
+	/* input tools (language) button: white-sheet sprite icon */
+	a[class*="d-Na-"]
+	{
+		background-color: transparent !important;
+		filter: invert(0.85) hue-rotate(180deg);
+	}
+
+	/* ---- Message list ---- */
+	.AO, .Cp, .aeF, .ae4
+	{
+		background-color: var(--rp-surface) !important;
+	}
+	/* empty-folder message cell (e.g. "No snoozed emails") */
+	td.TC
+	{
+		background-color: transparent !important;
+		color: var(--rp-subtle) !important;
+	}
+	tr.zA
+	{
+		background-color: var(--rp-surface) !important;
+		border-bottom-color: var(--rp-hl-low) !important;
+	}
+	/* unread rows: slightly raised, bright text */
+	tr.zA.zE
+	{
+		background-color: var(--rp-overlay) !important;
+	}
+	tr.zA.zE .yX, tr.zA.zE .bog, tr.zA.zE .bqe
+	{
+		color: var(--rp-text) !important;
+	}
+	tr.zA.zE .xW span
+	{
+		color: var(--rp-foam) !important;
+	}
+	/* read rows: dimmed */
+	tr.zA.yO .yX, tr.zA.yO .bog, tr.zA.yO .bqe
+	{
+		color: var(--rp-subtle) !important;
+	}
+	tr.zA.yO .xW span
+	{
+		color: var(--rp-muted) !important;
+	}
+	/* snippet text */
+	.y2
+	{
+		color: var(--rp-muted) !important;
+	}
+	/* hover / focused / checked rows */
+	tr.zA:hover
+	{
+		background-color: var(--rp-hl-med) !important;
+	}
+	tr.zA.x7, tr.zA.aps
+	{
+		background-color: var(--rp-hl-med) !important;
+	}
+	/* row divider drawn with box-shadow in newer gmail */
+	tr.zA
+	{
+		box-shadow: inset 0 -1px 0 var(--rp-hl-low) !important;
+	}
+	/* row icons: paperclip, importance markers */
+	tr.zA svg
+	{
+		color: var(--rp-muted) !important;
+		fill: var(--rp-muted) !important;
+	}
+	tr.zA img:not([src*="googleusercontent"])
+	{
+		filter: invert(0.65) hue-rotate(180deg);
+	}
+	/* attachment chips under rows */
+	.brd, .brg
+	{
+		background-color: var(--rp-overlay) !important;
+		color: var(--rp-subtle) !important;
+		border-color: var(--rp-hl-med) !important;
+	}
+
+	/* ---- Reading pane / conversation view ---- */
+	.Bs, .gs, .G3, .adn,
+	.ha, .V8djrc, .amn, .Bu, .aHU,
+	.btDi4d, .l2,
+	div[role="main"]
+	{
+		background-color: var(--rp-surface) !important;
+	}
+	/* subject */
+	.hP
+	{
+		color: var(--rp-text) !important;
+	}
+	/* labels next to subject */
+	.hN
+	{
+		color: var(--rp-muted) !important;
+	}
+	/* sender name */
+	.gD
+	{
+		color: var(--rp-text) !important;
+	}
+	/* "to me", email addresses, date */
+	.go, .g2, .gH .g3, .iw
+	{
+		color: var(--rp-muted) !important;
+	}
+	/* collapsed messages in a thread */
+	.kQ, .kv
+	{
+		background-color: var(--rp-overlay) !important;
+	}
+	/* reply / forward pill buttons */
+	.ams
+	{
+		background-color: transparent !important;
+		border-color: var(--rp-hl-med) !important;
+		color: var(--rp-text) !important;
+	}
+	.ams:hover
+	{
+		background-color: var(--rp-hl-low) !important;
+	}
+	/* email body backdrop: HTML emails keep their own colors; plain
+	   emails get light text on the dark backdrop */
+	if dark-email-body
+	{
+		.ii.gt
+		{
+			background-color: var(--rp-surface) !important;
+		}
+		.a3s
+		{
+			color: var(--rp-text);
+		}
+	}
+
+	/* ---- Compose window ---- */
+	.AD, .aoI, .I5
+	{
+		background-color: var(--rp-surface) !important;
+	}
+	/* recipients / subject fields */
+	.aoD, .wO, .vO, .akl, .agP
+	{
+		color: var(--rp-text) !important;
+		background-color: transparent !important;
+	}
+	input.aoT
+	{
+		color: var(--rp-text) !important;
+		background-color: transparent !important;
+	}
+	input.aoT::placeholder
+	{
+		color: var(--rp-muted) !important;
+	}
+	/* message body editor */
+	.Am.editable
+	{
+		background-color: var(--rp-surface) !important;
+		color: var(--rp-text) !important;
+	}
+	/* send button */
+	.T-I.T-I-atl
+	{
+		background: var(--rp-accent) !important;
+		color: var(--rp-base) !important;
+	}
+	.T-I.T-I-atl:hover
+	{
+		filter: brightness(110%);
+	}
+	/* recipient chips */
+	.afV, .agd
+	{
+		background-color: var(--rp-overlay) !important;
+		color: var(--rp-text) !important;
+		border-color: var(--rp-hl-med) !important;
+	}
+
+	/* ---- Dropdown menus & dialogs ---- */
+	.J-M
+	{
+		background-color: var(--rp-overlay) !important;
+		border-color: var(--rp-hl-med) !important;
+	}
+	.J-N
+	{
+		color: var(--rp-text) !important;
+	}
+	.J-N-JT
+	{
+		background-color: var(--rp-hl-med) !important;
+		color: var(--rp-text) !important;
+	}
+	/* modal dialogs (confirm, etc.) */
+	.Kj-JD
+	{
+		background-color: var(--rp-surface) !important;
+		color: var(--rp-text) !important;
+	}
+	.Kj-JD-Jz, .Kj-JD-K7-K0
+	{
+		color: var(--rp-subtle) !important;
+	}
+	div[role="alertdialog"]
+	{
+		background-color: var(--rp-overlay) !important;
+		color: var(--rp-text) !important;
+	}
+	/* snackbar ("Message sent") */
+	.bAp
+	{
+		background-color: var(--rp-overlay) !important;
+		color: var(--rp-text) !important;
+	}
+	.bAp a, .bAq
+	{
+		color: var(--rp-accent) !important;
+	}
+
+	/* ---- Right companion panel (Calendar/Keep/Tasks strip) ---- */
+	div[role="complementary"],
+	.brC-aT5-aOt-Jw
+	{
+		background-color: var(--rp-base) !important;
+		border-color: var(--rp-hl-low) !important;
+	}
+
+	/* side panel show/hide toggle */
+	div[aria-label*="side panel"], button[aria-label*="side panel"]
+	{
+		background-color: var(--rp-base) !important;
+	}
+	div[aria-label*="side panel"] svg, button[aria-label*="side panel"] svg
+	{
+		color: var(--rp-subtle) !important;
+		fill: var(--rp-subtle) !important;
+	}
+
+	/* ---- Loading screen ---- */
+	#loading
+	{
+		background-color: var(--rp-base) !important;
+	}
+	.la-k, #loading .msg
+	{
+		color: var(--rp-subtle) !important;
+	}
+}
